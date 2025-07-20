@@ -4,11 +4,14 @@ import sys
 import json
 
 # 添加项目根目录到Python路径
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(project_root)
 
 from aes_logic import encrypt_aes, decrypt_aes
 
-app = Flask(__name__)
+# 创建Flask应用，使用相对路径查找模板
+app = Flask(__name__, 
+           template_folder='templates')
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
